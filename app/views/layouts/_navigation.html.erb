@@ -1,0 +1,39 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to "PostBoard", root_path, :class => 'navbar-brand' %>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <% if logged_in? %>
+          <li><%= link_to "Welcome! #{current_user.name}" , user_path(current_user) %></li>
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if logged_in? %>
+          <li class="dropdown">
+            <%= link_to '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do %>
+            <%= current_user.name %> <span class='caret'></span>
+            <% end %>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'User Profile', user_path(current_user) %></li>
+               <li role="separator" class="divider"></li>
+               <li><%= link_to 'New Category', new_category_path %></li>
+              <li><%= link_to 'New Post', new_post_path %></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to 'Logout', logout_path %></li>
+            </ul>
+             <% else %>
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            走過路過千萬別錯過
+            <span class="caret"></span>
+          </button>
+            <ul class="dropdown-menu">
+             <li><%= link_to 'Register', register_path %></li>
+            <li><%= link_to 'Login', login_path %></li>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
